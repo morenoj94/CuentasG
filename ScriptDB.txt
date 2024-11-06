@@ -1,0 +1,45 @@
+CREATE DATABASE ElGuisoDB;
+GO
+USE ElGuisoDB;
+GO
+
+
+CREATE TABLE Category (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    SoupDiscount DECIMAL(5, 2) NOT NULL,
+    MealDiscount DECIMAL(5, 2) NOT NULL
+);
+
+
+CREATE TABLE Customer (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Name NVARCHAR(100) NOT NULL,
+    CategoryId INT FOREIGN KEY REFERENCES Category(Id),
+    SoupDiscount DECIMAL(5, 2) NOT NULL,
+    MealDiscount DECIMAL(5, 2) NOT NULL,
+    LastPay DECIMAL(10, 2) NOT NULL,
+    LastPayDate DATETIME NOT NULL,
+    Debt DECIMAL(10, 2) NOT NULL
+);
+
+
+CREATE TABLE Product (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Code NVARCHAR(50) NOT NULL,
+    Name NVARCHAR(100) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL
+);
+
+
+INSERT INTO Product (Name, Code, Price)
+VALUES 
+    ('Almuerzo', 'A1', 6.50),
+    ('Sopa', 'S1', 4.50);
+
+
+INSERT INTO Category (Name, SoupDiscount, MealDiscount)
+VALUES 
+    ('TrackerFull', 1.00, 2.00),
+    ('SubTracker', 2.50, 3.50),
+    ('Suzuki', 1.00, 1.00);
