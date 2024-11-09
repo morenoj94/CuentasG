@@ -9,6 +9,7 @@ namespace Domain
     public class Custumer
     {
         public int Id { get; set; }
+        public string CustumerCode { get; set; }
         public string Name { get; set; }
         public Category CategoryId { get; set; }
         public double SoupDiscount { get; set; }
